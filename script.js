@@ -1,6 +1,7 @@
 document.getElementById('dataForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    const filename = document.getElementById('filename').value.trim(); // Captura o nome do arquivo
     const barra = document.getElementById('barra').value.padEnd(25, ' '); // Posição 1 a 25
     const idlocal = document.getElementById('idlocal').value.padEnd(31, ' '); // Posição 26 a 56
     const quantidade = document.getElementById('quantidade').value.toString().padStart(10, ' '); // Posição 57 a 66
@@ -11,6 +12,6 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
     const blob = new Blob([linha], { type: 'text/plain' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'arquivo.invdet';
+    link.download = filename || 'arquivo.invdet'; // Usa o nome fornecido ou o padrão
     link.click();
 });

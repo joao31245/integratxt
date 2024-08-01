@@ -23,17 +23,18 @@ body {
     padding: 80px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 h1 {
     font-weight: 600;
     font-size: 24px;
     margin-bottom: 20px;
-    text-align: center;
 }
 
 .input-group {
     margin-bottom: 15px;
+    text-align: left;
 }
 
 label {
@@ -69,8 +70,27 @@ input[type="number"]::placeholder {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .submit-btn:hover {
     background-color: #e73370;
+}
+
+.made-for {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff4081;
+    margin-top: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    to {
+        text-shadow: 2px 2px 20px rgba(255, 64, 129, 0.8);
+    }
 }
