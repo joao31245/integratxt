@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
+    background: linear-gradient(to right, #001f3f, #0074d9);
     margin: 0;
     display: flex;
     justify-content: center;
@@ -10,8 +10,8 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    background: rgba(0, 31, 63, 0.8);
+    padding: 15px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
@@ -19,11 +19,8 @@ body {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.2);
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    background: rgba(0, 47, 75, 0.9);
+    padding: 15px 40px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -53,7 +50,7 @@ input[type="date"] {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
     font-size: 16px;
 }
@@ -63,23 +60,10 @@ input[type="number"]::placeholder {
     color: #ccc;
 }
 
-input[type="date"] {
-    background: rgba(255, 255, 255, 0.3);
-    color: #fff;
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-}
-
 .submit-btn {
     width: 100%;
     padding: 10px;
-    background-color: #ff4081;
+    background-color: #0074d9;
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -91,13 +75,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .submit-btn:hover {
-    background-color: #e73370;
+    background-color: #005bb5;
 }
 
 .made-for {
     font-size: 18px;
     font-weight: 600;
-    color: #ff4081;
+    color: #0074d9;
     margin-top: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     animation: glow 1.5s infinite alternate;
@@ -108,6 +92,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     }
     to {
-        text-shadow: 2px 2px 20px rgba(255, 64, 129, 0.8);
+        text-shadow: 2px 2px 20px rgba(0, 116, 217, 0.8);
     }
 }
