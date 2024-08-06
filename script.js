@@ -16,13 +16,19 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
             const zip = new JSZip();
             
             rows.slice(1).forEach((row, index) => {
-                const barra = row[0].toString().padEnd(25, ' ');
-                const idlocal = row[1].toString().padEnd(31, ' ');
-                const validade = row[2].toString().padStart(12, ' ');
-                const lote = row[3].toString().padEnd(60, ' ');
-                const quantidade = row[4].toString().padStart(10, ' ');
+                const idlocal = row[1].toString().padEnd(25, ' ');   // Posição 1 a 25
+                const barra = row[0].toString().padEnd(31, ' ');     // Posição 26 a 56
+                const quantidade = row[4].toString().padStart(10, ' '); // Posição 57 a 66
+                
+                // Verificação e formatação da data de validade
+                let validade = ''.padEnd(12, ' ');  // Posição 67 a 78, default é espaço
+                if (row[2]) {
+                    validade = new Date(row[2]).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'}).padStart(12, ' ');
+                }
 
-                const linha = `${barra}${idlocal}${quantidade}${validade}${lote}\n`;
+                const lote = row[3].toString().padEnd(60, ' ');       // Posição 79 a 138
+
+                const linha = `${idlocal}${barra}${quantidade}${validade}${lote}\n`;
                 const txtFilename = `${filename}_${index + 1}.invdet`;
 
                 zip.file(txtFilename, linha);
