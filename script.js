@@ -13,9 +13,9 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
             const sheet = workbook.Sheets[workbook.SheetNames[0]];
             const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
-            const zip = new JSZip();
-            
-            rows.slice(1).forEach((row, index) => {
+            let fileContent = '';
+
+            rows.slice(1).forEach((row) => {
                 const idlocal = row[1].toString().padEnd(25, ' ');   // Posição 1 a 25
                 const barra = row[0].toString().padEnd(31, ' ');     // Posição 26 a 56
                 const quantidade = row[4].toString().padStart(10, ' '); // Posição 57 a 66
@@ -29,15 +29,14 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
                 const lote = row[3].toString().padEnd(60, ' ');       // Posição 79 a 138
 
                 const linha = `${idlocal}${barra}${quantidade}${validade}${lote}\n`;
-                const txtFilename = `${filename}_${index + 1}.invdet`;
-
-                zip.file(txtFilename, linha);
+                fileContent += linha + '\n';  // Adiciona uma linha em branco entre os pedidos
             });
 
-            zip.generateAsync({ type: 'blob' })
-                .then(function(content) {
-                    saveAs(content, filename + '.zip');
-                });
+            const blob = new Blob([fileContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename + '.invdet';  // Nome do arquivo gerado
+            link.click();
         };
 
         reader.readAsArrayBuffer(fileInput);
