@@ -16,22 +16,25 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
             let fileContent = '';
 
             rows.slice(1).forEach((row) => {
-                const idlocal = row[1].toString().padEnd(25, ' ');   // Posição 1 a 25
-                const barra = row[0].toString().padEnd(31, ' ');     // Posição 26 a 56
-                const quantidade = row[4].toString().padStart(10, ' '); // Posição 57 a 66
-                
+                // Preenchendo cada campo com espaço se não houver valor
+                const idlocal = (row[1] || '').toString().padEnd(25, ' ');   // Posição 1 a 25
+                const barra = (row[0] || '').toString().padEnd(31, ' ');     // Posição 26 a 56
+                const quantidade = (row[4] || '').toString().padStart(10, ' '); // Posição 57 a 66
+
                 // Verificação e formatação da data de validade
                 let validade = ''.padEnd(12, ' ');  // Posição 67 a 78, default é espaço
                 if (row[2]) {
                     validade = new Date(row[2]).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'}).padStart(12, ' ');
                 }
 
-                const lote = row[3].toString().padEnd(60, ' ');       // Posição 79 a 138
+                const lote = (row[3] || '').toString().padEnd(60, ' ');       // Posição 79 a 138
 
+                // Monta a linha com os campos formatados
                 const linha = `${idlocal}${barra}${quantidade}${validade}${lote}\n`;
-                fileContent += linha + '\n';  // Adiciona uma linha em branco entre os pedidos
+                fileContent += linha;  // Adiciona a linha ao conteúdo do arquivo
             });
 
+            // Gera o arquivo e inicia o download
             const blob = new Blob([fileContent], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
